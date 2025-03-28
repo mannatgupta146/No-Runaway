@@ -1,41 +1,84 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="./style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Always Together?</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Quicksand:wght@500;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="message">
+            <h1 class="header_text">Is there a chance that ‘we’ could mean ‘always’? 💕</h1>
+            <div class="subtext">(I'm ready to make it forever if you are)</div>
+        </div>
+        <div class="gif_container">
+            <img src="HeartSticker.gif" alt="Fluttering hearts" class="main-gif">
+        </div>
+        <div class="buttons">
+            <button class="btn yes-btn" id="yesButton">Yes, Always!</button>
+            <button class="btn no-btn" id="noButton">Not Sure</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('noButton').addEventListener('mouseover', () => {
+            noCount++;
+            const button = document.getElementById('noButton');
+            const yesButton = document.getElementById('yesButton');
+            const container = document.querySelector('.container');
+            
+            // Get viewport dimensions
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            
+            // Get button dimensions
+            const buttonWidth = button.offsetWidth;
+            const buttonHeight = button.offsetHeight;
+            
+            // Calculate safe area (90% of viewport)
+            const maxX = viewportWidth - buttonWidth - 20;
+            const maxY = viewportHeight * 0.7 - buttonHeight; // Upper 70% of screen
+            
+            // Get yes button position
+            const yesRect = yesButton.getBoundingClientRect();
+            const buffer = 80; // Minimum distance from Yes button
+            
+            let newX, newY;
+            let attempts = 0;
+            
+            // Find valid position
+            do {
+                newX = Math.random() * maxX;
+                newY = Math.random() * maxY;
+                attempts++;
+            } while (
+                (attempts < 100) && 
+                (newX + buttonWidth > yesRect.left - buffer && 
+                 newX < yesRect.right + buffer &&
+                 newY + buttonHeight > yesRect.top - buffer && 
+                 newY < yesRect.bottom + buffer)
+            );
         
-    </head> 
-    <body>
-        <div class="container">
-            <div >
-                <h1 class = "header_text">Is there a chance that ‘we’ could mean ‘always’?</h1>
-
-                <!--
+            // Apply boundaries
+            newX = Math.max(20, Math.min(newX, viewportWidth - buttonWidth - 20));
+            newY = Math.max(20, Math.min(newY, viewportHeight * 0.7 - buttonHeight));
+            
+            button.style.transform = `translate(${newX}px, ${newY}px)`;
+            button.innerText = ['Not Sure', 'Maybe?', 'Think Again!', 'Please?', 'Yes!'][noCount % 5];
+            
+            if(noCount > 4) {
+                button.style.opacity = '0.5';
+                button.style.pointerEvents = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+             <!--
                 <h1 class="header_text">Would you mind if I became your permanent headache?
                     <br/> (in a good way)
                 </h1>
                 -->
-
-            </div>
-            <div class="gif_container">
-                <img src="HeartSticker.gif" alt="Cute animated illustration">
-            </div>
-            <div class = "buttons">
-                <button class="btn" id = "yesButton" onclick="nextPage()">Yes</button>
-                <button class="btn" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
-                <script>
-                    function nextPage() {
-                        window.location.href = "yes.html";
-                    }
-                    
-                    function moveButton() {
-                        var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth) - 85;
-                        var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight) - 48;
-                        document.getElementById('noButton').style.left = `${x}px`;
-                        document.getElementById('noButton').style.top = `${y}px`;
-                    }
-                </script> 
-            </div>
-        </div>
-       
-    </body> 
-</html>
+           

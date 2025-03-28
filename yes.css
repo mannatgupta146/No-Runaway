@@ -1,0 +1,58 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffaaaa);
+    animation: gradientShift 15s ease infinite;
+    overflow: hidden;
+    font-family: 'Dancing Script', cursive;
+    margin: 0;
+    padding: 1rem;
+}
+
+.celebration-container {
+    text-align: center;
+    max-width: 800px;
+    width: 95%;
+}
+
+.celebration-text {
+    font-size: 3rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin: 1rem 0;
+    animation: textFloat 3s ease-in-out infinite;
+    font-family: 'Dancing Script', cursive;
+}
+
+.subtext {
+    font-size: 2rem;
+    color: rgba(255,255,255,0.95);
+    margin: 0.5rem 0 1.5rem;
+}
+
+.celebration-gif {
+    width: 400px;
+    height: auto;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(3deg); }
+}
+
+@media (max-width: 768px) {
+    .celebration-text {
+        font-size: 2.2rem;
+    }
+    
+    .subtext {
+        font-size: 1.5rem;
+    }
+    
+    .celebration-gif {
+        width: 280px;
+    }
+}
