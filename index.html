@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,59 +23,28 @@
         </div>
     </div>
     <script>
-        document.getElementById('noButton').addEventListener('mouseover', () => {
+        let noCount = 0;
+        const noButton = document.getElementById('noButton');
+        const yesButton = document.getElementById('yesButton');
+
+        noButton.addEventListener('mouseover', () => {
             noCount++;
-            const button = document.getElementById('noButton');
-            const yesButton = document.getElementById('yesButton');
-            const container = document.querySelector('.container');
-            
-            // Get viewport dimensions
-            const viewportWidth = window.innerWidth;
-            const viewportHeight = window.innerHeight;
-            
-            // Get button dimensions
-            const buttonWidth = button.offsetWidth;
-            const buttonHeight = button.offsetHeight;
-            
-            // Calculate safe area (90% of viewport)
-            const maxX = viewportWidth - buttonWidth - 20;
-            const maxY = viewportHeight * 0.7 - buttonHeight; // Upper 70% of screen
-            
-            // Get yes button position
-            const yesRect = yesButton.getBoundingClientRect();
-            const buffer = 80; // Minimum distance from Yes button
-            
-            let newX, newY;
-            let attempts = 0;
-            
-            // Find valid position
-            do {
-                newX = Math.random() * maxX;
-                newY = Math.random() * maxY;
-                attempts++;
-            } while (
-                (attempts < 100) && 
-                (newX + buttonWidth > yesRect.left - buffer && 
-                 newX < yesRect.right + buffer &&
-                 newY + buttonHeight > yesRect.top - buffer && 
-                 newY < yesRect.bottom + buffer)
-            );
-        
-            // Apply boundaries
-            newX = Math.max(20, Math.min(newX, viewportWidth - buttonWidth - 20));
-            newY = Math.max(20, Math.min(newY, viewportHeight * 0.7 - buttonHeight));
-            
-            button.style.transform = `translate(${newX}px, ${newY}px)`;
-            button.innerText = ['Not Sure', 'Maybe?', 'Think Again!', 'Please?', 'Yes!'][noCount % 5];
-            
-            if(noCount > 4) {
-                button.style.opacity = '0.5';
-                button.style.pointerEvents = 'none';
+            const phrases = ["Not Sure", "Maybe?", "Think Again!", "Please?", "Yes!"];
+            noButton.innerText = phrases[noCount % phrases.length];
+
+            if (noCount >= 5) {
+                noButton.style.opacity = '0.5';
+                noButton.style.pointerEvents = 'none';
             }
+        });
+
+        yesButton.addEventListener('click', () => {
+            confetti();
         });
     </script>
 </body>
 </html>
+
              <!--
                 <h1 class="header_text">Would you mind if I became your permanent headache?
                     <br/> (in a good way)
