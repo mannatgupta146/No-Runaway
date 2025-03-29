@@ -22,26 +22,78 @@
             <button class="btn no-btn" id="noButton">Not Sure</button>
         </div>
     </div>
+    
     <script>
         let noCount = 0;
         const noButton = document.getElementById('noButton');
         const yesButton = document.getElementById('yesButton');
-
-        noButton.addEventListener('mouseover', () => {
-            noCount++;
-            const phrases = ["Not Sure", "Maybe?", "Think Again!", "Please?", "Okay"];
-            noButton.innerText = phrases[noCount % phrases.length];
-
-            if (noCount >= 5) {
-                noButton.style.opacity = '0.5';
-                noButton.style.pointerEvents = 'none';
+        const buttonsContainer = document.querySelector('.buttons');
+    
+        // Yes button redirect
+        yesButton.addEventListener('click', () => {
+            window.location.href = 'yes.html';
+        });
+    
+        // No button behavior
+        noButton.addEventListener('click', () => {
+            if (noCount < 5) {
+                moveNoButton();
+                updateButtonText();
+                noCount++;
+                
+                if (noCount === 5) {
+                    noButton.style.opacity = '0';
+                    noButton.style.pointerEvents = 'none';
+                }
             }
         });
-
-        yesButton.addEventListener('click', () => {
-            confetti();
+    
+        function moveNoButton() {
+            const containerRect = buttonsContainer.getBoundingClientRect();
+            const yesRect = yesButton.getBoundingClientRect();
+            const buttonWidth = noButton.offsetWidth;
+            const buttonHeight = noButton.offsetHeight;
+            
+            // Convert to container-relative coordinates
+            const yesX = yesRect.left - containerRect.left;
+            const yesY = yesRect.top - containerRect.top;
+            
+            const buffer = 20; // Minimum distance from Yes button
+            const maxX = containerRect.width - buttonWidth;
+            const maxY = containerRect.height - buttonHeight;
+            
+            let newX, newY;
+            let attempts = 0;
+            
+            // Find non-overlapping position
+            do {
+                newX = Math.random() * maxX;
+                newY = Math.random() * maxY;
+                attempts++;
+            } while (
+                attempts < 100 &&
+                (Math.abs(newX - yesX) < buttonWidth + buffer ||
+                Math.abs(newY - yesY) < buttonHeight + buffer)
+            );
+    
+            // Apply new position
+            noButton.style.left = `${newX}px`;
+            noButton.style.top = `${newY}px`;
+        }
+    
+        function updateButtonText() {
+            const messages = ['Not Sure', 'Maybe?', 'Think Again!', 'Please?', 'Yes!'];
+            noButton.textContent = messages[Math.min(noCount, messages.length - 1)];
+        }
+    
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (noCount < 5) {
+                moveNoButton();
+            }
         });
     </script>
+
 </body>
 </html>
 
