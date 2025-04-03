@@ -39,7 +39,7 @@ No Runaway is a **fun, interactive webpage** where the **"No" button literally r
 - **UI/UX Practice** – A great way to experiment with animations and interactivity.  
 - **Good for Beginners** – If you're new to HTML, CSS, and JS, this is a great hands-on project!  
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Follow these steps to contribute:
 
