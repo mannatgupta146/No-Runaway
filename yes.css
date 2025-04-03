@@ -1,14 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap');
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffaaaa);
-    animation: gradientShift 15s ease infinite;
+    background: #F5E6E0; /* Soft peachy romantic background */
     overflow: hidden;
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 1rem;
+    position: relative;
 }
 
 .celebration-container {
@@ -17,42 +19,72 @@ body {
     width: 95%;
 }
 
+/* Elegant heading font */
 .celebration-text {
     font-size: 3rem;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    font-family: 'Playfair Display', serif;
+    color: #5A3E36; /* Deep brown for elegance */
     margin: 1rem 0;
     animation: textFloat 3s ease-in-out infinite;
-    font-family: 'Dancing Script', cursive;
 }
 
+/* Subtext with better contrast */
 .subtext {
-    font-size: 2rem;
-    color: rgba(255,255,255,0.95);
+    font-size: 1.8rem;
+    font-family: 'Poppins', sans-serif;
+    color: #5A3E36;
     margin: 0.5rem 0 1.5rem;
+    animation: fadeIn 2s ease-in-out;
 }
 
+/* Floating animation for text */
+@keyframes textFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Floating animation for the gif */
 .celebration-gif {
-    width: 400px;
+    width: 380px;
     height: auto;
     animation: float 3s ease-in-out infinite;
 }
 
+/* Floating effect */
 @keyframes float {
     0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-15px) rotate(3deg); }
+    50% { transform: translateY(-12px) rotate(3deg); }
 }
 
+/* Confetti animation */
+@keyframes confetti {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Confetti particles */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 50%;
+    top: -10px;
+    animation: confetti 3s linear infinite;
+}
+
+/* Confetti colors */
 @media (max-width: 768px) {
     .celebration-text {
-        font-size: 2.2rem;
+        font-size: 2.4rem;
     }
     
     .subtext {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
     
     .celebration-gif {
-        width: 280px;
+        width: 300px;
     }
 }
