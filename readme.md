@@ -44,19 +44,17 @@ No Runaway is a **fun, interactive webpage** where the **"No" button literally r
 Contributions are welcome! Follow these steps to contribute:
 
 1. **Fork** the repository.  
-2. **Clone** your fork:  
-   ```git clone https://github.com/your-username/no-runaway.git```
 
-3. **Create a new branch** for your feature:
-```git checkout -b feature-name``
+2. **Clone** your fork: ```git clone https://github.com/mannatgupta146/No-Runaway.git```
 
-4. **Make your changes** and commit:
-```git commit -m "Add new feature"```
+3. **Create a new branch** for your feature:```git checkout -b feature-name``
 
-5. **Push to your branch** and open a Pull Request:
-```git push origin feature-name```
+4. **Make your changes** and commit:```git commit -m "Add new feature"```
+
+5. **Push to your branch** and open a Pull Request:```git push origin feature-name```
 
 6. Once reviewed, your changes will be merged!
+
 ---
 
 **No matter how far you go, you’ll find me waiting.💕**
