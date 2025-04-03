@@ -14,6 +14,7 @@ No Runaway is a **fun, interactive webpage** where the **"No" button literally r
 ## Preview  
 
 ![No Runaway Preview](screenshot.png)  
+***See how it looks like.***
 
 ## How It Works  
 
