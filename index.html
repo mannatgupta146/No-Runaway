@@ -36,12 +36,12 @@
     
         // No button behavior
         noButton.addEventListener('click', () => {
-            if (noCount < 5) {
+            if (noCount < 6) {
                 moveNoButton();
                 updateButtonText();
                 noCount++;
                 
-                if (noCount === 5) {
+                if (noCount === 6) {
                     noButton.style.opacity = '0';
                     noButton.style.pointerEvents = 'none';
                 }
@@ -58,7 +58,7 @@
             const yesX = yesRect.left - containerRect.left;
             const yesY = yesRect.top - containerRect.top;
             
-            const buffer = 50; // Minimum distance from Yes button
+            const buffer = 150; // Minimum distance from Yes button
             const maxX = containerRect.width - buttonWidth;
             const maxY = containerRect.height - buttonHeight;
             
@@ -67,8 +67,8 @@
             
             // Find non-overlapping position
             do {
-                newX = Math.random() * maxX;
-                newY = Math.random() * maxY;
+                newX = Math.random() * maxX+200;
+                newY = Math.random() * maxY-100;
                 attempts++;
             } while (
                 attempts < 100 &&
@@ -88,7 +88,7 @@
     
         // Handle window resize
         window.addEventListener('resize', () => {
-            if (noCount < 5) {
+            if (noCount < 6) {
                 moveNoButton();
             }
         });
