@@ -19,7 +19,7 @@
         </div>
         <div class="buttons">
             <button class="btn yes-btn" id="yesButton">Yes, Always!</button>
-            <button class="btn no-btn" id="noButton">Not Sure</button>
+            <button class="btn no-btn" id="noButton">No Never</button>
         </div>
     </div>
     
@@ -82,7 +82,7 @@
         }
     
         function updateButtonText() {
-            const messages = ['Not Sure', 'Maybe?', 'Think Again!', 'Please?', 'Yes!'];
+            const messages = ['Not Sure', 'Maybe?', 'Think Again!', 'Please?', 'Okay<3'];
             noButton.textContent = messages[Math.min(noCount, messages.length - 1)];
         }
     
